@@ -4,15 +4,15 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'website/index.html')
 
 
 def page1(request):
-    return render(request, 'a.html')
+    return render(request, 'website/a.html')
 
 
 def page2(request):
-    return render(request, 'b.html')
+    return render(request, 'website/b.html')
 
 def page3(request):
-    return render(request, 'c.html')
+    return render(request, 'website/c.html')
