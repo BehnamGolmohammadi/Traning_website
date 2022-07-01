@@ -7,12 +7,9 @@ def index(request):
     return render(request, 'website/index.html')
 
 
-def page1(request):
-    return render(request, 'website/a.html')
+def about(request):
+    return render(request, 'website/about.html')
 
 
-def page2(request):
-    return render(request, 'website/b.html')
-
-def page3(request):
-    return render(request, 'website/c.html')
+def contact(request):
+    return render(request, 'website/contact.html')
