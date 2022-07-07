@@ -1,6 +1,4 @@
-import django
 from django.db import models
-from django.forms import EmailField
 
 # Create your models here.
 class Contact(models.Model):
