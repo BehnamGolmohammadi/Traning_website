@@ -8,3 +8,6 @@ class Contact(models.Model):
     Message= models.TextField()
     Created_Date= models.DateTimeField(auto_now_add= True)
     Updated_Date= models.DateTimeField(auto_now= True)
+
+    def __str__(self):
+        return f"{self.Name} : {self.Created_Date}"
