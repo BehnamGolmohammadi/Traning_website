@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from blog.models import Post
 from datetime import datetime
 # Create your views here.
 
-def index(request):
+def blog_index(request):
     Current_Time = datetime.now()
     posts= Post.objects.filter(Published_Date__lte= Current_Time)
     for post in posts:
@@ -12,8 +12,7 @@ def index(request):
     return render(request, 'blog/blog-home.html', Context)
 
 
-def single(request):
-    def Add_View(post):
-        post.Counted_view += 1
-    # Because of we do not have any auther yet, we can not use Add_View
-    return render(request, 'blog/blog-single.html')
+def blog_single(request, pid):
+    post= Post.objects.get(id = pid)
+    Context= {'post':post}
+    return render(request, 'blog/blog-single.html', Context)
