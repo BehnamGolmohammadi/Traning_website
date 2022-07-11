@@ -13,6 +13,6 @@ def blog_index(request):
 
 
 def blog_single(request, pid):
-    post= Post.objects.get(id = pid)
+    post= get_object_or_404(Post, pk = pid)
     Context= {'post':post}
     return render(request, 'blog/blog-single.html', Context)
