@@ -1,13 +1,14 @@
 from django.shortcuts import render, get_object_or_404
+from django.utils import timezone
 from blog.models import Post
-from datetime import datetime
 # Create your views here.
 
 def blog_index(request):
-    Current_Time = datetime.now()
-    posts= Post.objects.filter(Published_Date__lte= Current_Time)
+    Local_Time= timezone.localtime(timezone.now())
+    posts= Post.objects.filter(Published_Date__lte= Local_Time)
     for post in posts:
-        post.Status= True
+        if not post.Status: post.Status= True
+        post.save()
     Context= {"posts": posts}
     return render(request, 'blog/blog-home.html', Context)
 
