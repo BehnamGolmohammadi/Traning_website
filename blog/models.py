@@ -26,4 +26,4 @@ class Post(models.Model):
 
 
     class Meta:
-        ordering= ['Created_Date']
+        ordering= ['-Created_Date']
