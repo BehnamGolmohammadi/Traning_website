@@ -8,7 +8,7 @@ class Post_Admin_Customization(admin.ModelAdmin):
     empty_value_display= 'No Information'
     fieldsets = (
         ('Main options', {
-            'fields': ("Author", "Title", "Content")
+            'fields': ("Author", "Image", "Title", "Content")
         }),
         ('Advanced options', {
             'classes': ('wide', 'collapse', 'extrapretty'),
