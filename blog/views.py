@@ -15,5 +15,19 @@ def blog_index(request):
 
 def blog_single(request, pid):
     post= get_object_or_404(Post, pk = pid, Status= True)
-    Context= {'post':post}
+    posts= Post.objects.filter(Status= True)
+    posts= list(posts.reverse())
+    post_in_posts= posts.index(post)
+    if posts[post_in_posts] == posts[-1]:
+        previous_post= posts[post_in_posts - 1]
+        next_post= None
+    elif posts[post_in_posts] == posts[0]:
+        previous_post= None
+        next_post= posts[post_in_posts + 1]
+
+    else:
+        previous_post= posts[post_in_posts - 1]
+        next_post= posts[post_in_posts + 1]
+
+    Context= {'post':post, 'nextpost':next_post, 'previouspost': previous_post}
     return render(request, 'blog/blog-single.html', Context)
