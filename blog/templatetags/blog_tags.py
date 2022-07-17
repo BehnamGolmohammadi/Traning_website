@@ -17,9 +17,9 @@ def View(pid):
 def Short_Content(Content,Len= 35):
     return ' '.join(Content.split()[:Len]) + ' ...'
 
-@register.inclusion_tag('blog/blog-popularposts.html')
-def popularposts():
-    posts= Post.objects.filter(Status= True).order_by('Published_Date')[:4]
+@register.inclusion_tag('blog/blog-latestposts.html')
+def Latestposts():
+    posts= Post.objects.filter(Status= True).order_by('-Published_Date')[:4]
     Context= {'posts': posts}
     return Context
 
@@ -27,4 +27,5 @@ def popularposts():
 def Past_Time(Published_Date):
     Current_Time= timezone.localtime(timezone.now())
     past_time=  Current_Time - Published_Date
-    return past_time
+    past_days= past_time.days
+    return str(past_days) + ' Days ago'
