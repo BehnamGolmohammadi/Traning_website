@@ -15,9 +15,6 @@ def blog_index(request):
 
 def blog_single(request, pid):
     post= get_object_or_404(Post, pk = pid, Status= True)
-    post.Counted_view += 1
-    post.save()
-
     posts= Post.objects.filter(Status= True)
     posts= list(posts.reverse())
     post_in_posts= posts.index(post)
