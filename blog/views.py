@@ -3,9 +3,11 @@ from django.utils import timezone
 from blog.models import Post
 # Create your views here.
 
-def blog_index(request):
+def blog_index(request, cat_name= None):
     Local_Time= timezone.localtime(timezone.now())
     posts= Post.objects.filter(Published_Date__lte= Local_Time)
+    if cat_name:
+        posts= posts.filter(Category__Name= cat_name)
     for post in posts:
         if not post.Status: post.Status= True
         post.save()
