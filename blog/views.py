@@ -31,3 +31,8 @@ def blog_single(request, pid):
 
     Context= {'post':post, 'nextpost':next_post, 'previouspost': previous_post}
     return render(request, 'blog/blog-single.html', Context)
+
+def blog_category(request, cat_name):
+    posts= Post.objects.filter(Status= True, Category__Name= cat_name)
+    Context= {"posts": posts}
+    return render(request, 'blog/blog-home.html', Context)
