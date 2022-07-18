@@ -39,3 +39,10 @@ def blog_category(request, cat_name):
     posts= Post.objects.filter(Status= True, Category__Name= cat_name)
     Context= {"posts": posts}
     return render(request, 'blog/blog-home.html', Context)
+
+def blog_search(request):
+    posts= Post.objects.filter(Status= True)
+    if request.method == 'GET' and (search := request.GET.get('search')):
+        posts= posts.filter(Content__contains= search)
+    Context= {"posts": posts}
+    return render(request, 'blog/blog-home.html', Context)
