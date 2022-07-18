@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from blog.models import Post
+from django.core.paginator import Paginator as pg, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 def blog_index(request, **kwargs):
@@ -13,6 +14,17 @@ def blog_index(request, **kwargs):
     for post in posts:
         if not post.Status: post.Status= True
         post.save()
+
+    posts= pg(posts, 1)
+    page_number= request.GET.get('page')
+
+    try:
+        posts= posts.get_page(page_number)
+    except PageNotAnInteger:
+        posts= posts.get_page(1)
+    except EmptyPage:
+        posts= posts.get_page(posts.num_pages)
+
     Context= {"posts": posts}
     return render(request, 'blog/blog-home.html', Context)
 
