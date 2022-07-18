@@ -3,13 +3,13 @@ from django.utils import timezone
 from blog.models import Post
 # Create your views here.
 
-def blog_index(request, cat_name= None, author_username= None):
+def blog_index(request, **kwargs):
     Local_Time= timezone.localtime(timezone.now())
     posts= Post.objects.filter(Published_Date__lte= Local_Time)
-    if cat_name:
-        posts= posts.filter(Category__Name= cat_name)
-    if author_username:
-        posts= posts.filter(Author__username= author_username)
+    if kwargs.get('cat_name'):
+        posts= posts.filter(Category__Name= kwargs['cat_name'])
+    if kwargs.get('author_username'):
+        posts= posts.filter(Author__username= kwargs['author_username'])
     for post in posts:
         if not post.Status: post.Status= True
         post.save()
@@ -28,7 +28,6 @@ def blog_single(request, pid):
     elif posts[post_in_posts] == posts[0]:
         previous_post= None
         next_post= posts[post_in_posts + 1]
-
     else:
         previous_post= posts[post_in_posts - 1]
         next_post= posts[post_in_posts + 1]
