@@ -1,0 +1,38 @@
+{%load static%}
+{% load website_tags %}
+
+{% for post in posts%}
+<div class="single-recent-blog-post item">
+    <div class="thumb">
+        <a href="{% url 'blog:single' pid=post.id%}">
+            <img class="img-fluid" src="{{post.Image.url}}" alt="">
+        </a>
+    </div>
+    <div class="details">
+        <div class="tags">
+            {% for Cat in post.Category.all %}
+            <ul>
+                <li>
+                    <a href="{% url 'blog:category' cat_name=Cat%}">{{Cat}}</a>
+                </li>
+            </ul>
+            {% endfor %}
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <a href="{% url 'blog:single' pid=post.id%}">
+                        <h4 class="title">{{post.Title}}</h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <p>
+                {{ post.Content|Short_Content:20}}
+            </p>
+        </div>
+        <h6 class="date">{{post.Published_Date}}</h6>
+    </div>
+</div>
+{% endfor %}
