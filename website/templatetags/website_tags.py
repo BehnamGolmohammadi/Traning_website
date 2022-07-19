@@ -1,6 +1,6 @@
 from django import template
 register= template.Library()
-from blog.models import Post, Category
+from blog.models import Post
 
 
 @register.simple_tag
