@@ -15,7 +15,7 @@ def blog_index(request, **kwargs):
         if not post.Status: post.Status= True
         post.save()
 
-    posts= pg(posts, 1)
+    posts= pg(posts, 2)
     page_number= request.GET.get('page')
 
     try:
