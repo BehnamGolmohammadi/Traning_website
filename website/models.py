@@ -11,3 +11,10 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.Name} : {self.Created_Date}"
+
+
+class Newsletter(models.Model):
+    Email = models.EmailField(default='username@example.com')
+
+    def __str__(self):
+        return self.Email
