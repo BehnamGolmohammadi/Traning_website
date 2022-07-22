@@ -2948,8 +2948,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .recent-blog-area .single-recent-blog-post .tags li {
-  display: inline-block;
   float: right;
+  /* display: inline-block; */
   border: 1px solid #eee;
   padding: 4px 12px;
   -webkit-transition: all 0.3s ease 0s;
